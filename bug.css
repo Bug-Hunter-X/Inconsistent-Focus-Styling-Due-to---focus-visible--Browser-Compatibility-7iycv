@@ -1,0 +1,1 @@
+The CSS rule `:focus-visible` is not supported in older browsers.  This can lead to unexpected behavior for users relying on keyboard navigation or assistive technologies.  Specifically, some elements may not receive the expected visual indication of focus.
