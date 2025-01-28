@@ -1,0 +1,37 @@
+/* bug.css */
+button:focus {
+  outline: 2px solid blue;
+}
+
+/* bugSolution.css */
+button:focus-visible {
+  outline: 2px solid blue;
+}
+
+/* JS to detect support and apply alternative class (optional, improves solution) */
+const supportsFocusVisible = () => {
+  const el = document.createElement('div');
+  el.style.cssText = 'position: absolute; top: -9999px;';
+  document.body.appendChild(el);
+
+  el.focus();
+  const focused = el.classList.contains('focus-visible');
+  document.body.removeChild(el);
+  return focused;
+};
+
+if (!supportsFocusVisible()) {
+  document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('focus', () => {
+      button.classList.add('focused');
+    });
+    button.addEventListener('blur', () => {
+      button.classList.remove('focused');
+    });
+  });
+}
+
+/* Then, apply alternative styles (e.g. in bugSolution.css): */
+button.focused {
+  outline: 2px solid blue;
+}
